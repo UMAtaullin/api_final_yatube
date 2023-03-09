@@ -6,9 +6,11 @@
 Yatube - это социальная сеть с авторизацией, персональными лентами, комментариями и подписками на авторов статей.
 
 ### Технологии
-
+```
 Python 3.9.10
+```
 Django 3.2.16
+```
 Django REST Framework
 
 ### Установка
@@ -16,7 +18,7 @@ Django REST Framework
 1. Клонировать репозиторий:
 
    ```python
-   git clone https://github.com/Ural207/hw05_final.git
+   git clone git@github.com:Ural207/api_final_yatube.git
    ```
 
 2. Установить виртуальное окружение для проекта:

@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'djoser',
     'rest_framework_simplejwt',
     'api',
@@ -105,6 +106,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=8),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
     # Загловок перед токеном в заголовке запроса
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
