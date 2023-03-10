@@ -1,19 +1,16 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-from .views import (CommentViewSet, FollowViewSet, GroupViewSet,
-                    PostViewSet, UserViewSet)
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView)
+
+from .views import CommentViewSet, FollowViewSet, GroupViewSet, PostViewSet
 
 app_name = 'api'
 
 router = DefaultRouter()
-router.register(r'posts', PostViewSet)
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
-router.register(r'follow', FollowViewSet)
+router.register('posts', PostViewSet)
+router.register('groups', GroupViewSet)
+router.register('follow', FollowViewSet)
 router.register(r'posts/(?P<post_id>\d+)/comments',
                 CommentViewSet, basename='comments')
 
