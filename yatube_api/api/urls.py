@@ -5,14 +5,15 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from .views import (CommentViewSet, FollowViewSet, GroupViewSet,
-                    PostViewSet)
+                    PostViewSet, UserViewSet)
 
 app_name = 'api'
 
 router = DefaultRouter()
-router.register('posts', PostViewSet)
-router.register('groups', GroupViewSet)
-router.register('follow', FollowViewSet)
+router.register(r'posts', PostViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'follow', FollowViewSet)
 router.register(r'posts/(?P<post_id>\d+)/comments',
                 CommentViewSet, basename='comments')
 

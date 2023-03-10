@@ -4,20 +4,34 @@ from rest_framework.relations import SlugRelatedField
 from rest_framework.validators import UniqueTogetherValidator
 
 
+class GroupSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Group
+        fields = '__all__'
+
+
+class PostSerializer(serializers.ModelSerializer):
+    author = SlugRelatedField(slug_field='username', read_only=True)
+
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
 class CommentSerializer(serializers.ModelSerializer):
     author = SlugRelatedField(read_only=True, slug_field='username')
 
     class Meta:
         model = Comment
-        fields = ('id', 'author', 'post', 'text', 'created')
-        read_only_fields = ('post',)
-
-
-class GroupSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Group
-        fields = ('id', 'title', 'slug', 'description')
+        fields = '__all__'
+        read_only_fields = ('id', 'post', 'created')
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -47,11 +61,3 @@ class FollowSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Не стоит подписываться на самого себя!')
         return value
-
-
-class PostSerializer(serializers.ModelSerializer):
-    author = SlugRelatedField(slug_field='username', read_only=True)
-
-    class Meta:
-        model = Post
-        fields = ('id', 'author', 'text', 'pub_date', 'image', 'group')
