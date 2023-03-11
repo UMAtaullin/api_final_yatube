@@ -6,10 +6,14 @@
 Yatube - это социальная сеть с авторизацией, персональными лентами, комментариями и подписками на авторов статей.
 
 ### Технологии
+ - _[Python 3.9.10](https://docs.python.org/3/)_
+ - _[Django 2.2.16](https://docs.djangoproject.com/en/4.1/releases/3.2.16/)_
+ - _[Django REST framework 3.12.4](https://www.django-rest-framework.org/)_
+ - _[Djoser 2.1.0](https://djoser.readthedocs.io/en/latest/)_
+ - _[Pillow 9.3.0](https://pillow.readthedocs.io/en/stable/)_
+ - _[Simple JWT 4.7.2](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)_
+ - _[SQLite3](https://www3.sqlite.org/index.html)_
 
-Python 3.9.10
-Django 3.2.16
-Django REST Framework
 
 ### Установка
 
