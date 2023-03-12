@@ -1,4 +1,4 @@
-# Спринт 9
+# Спринт 9 - api_final_yatube
 
 ## Описание
 
@@ -7,10 +7,9 @@ Yatube - это социальная сеть с авторизацией, пе�
 
 ### Технологии
  - _[Python 3.9.10](https://docs.python.org/3/)_
- - _[Django 2.2.16](https://docs.djangoproject.com/en/4.1/releases/3.2.16/)_
+ - _[Django 3.2.16](https://docs.djangoproject.com/en/4.1/releases/3.2.16/)_
  - _[Django REST framework 3.12.4](https://www.django-rest-framework.org/)_
  - _[Djoser 2.1.0](https://djoser.readthedocs.io/en/latest/)_
- - _[Pillow 9.3.0](https://pillow.readthedocs.io/en/stable/)_
  - _[Simple JWT 4.7.2](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)_
  - _[SQLite3](https://www3.sqlite.org/index.html)_
 
@@ -49,7 +48,7 @@ Yatube - это социальная сеть с авторизацией, пе�
 5. Выполнить миграции на уровне проекта:
 
    ```python
-   cd yatube
+   cd yatube_api
    python3 manage.py makemigrations
    python3 manage.py migrate
    ```
@@ -60,33 +59,57 @@ Yatube - это социальная сеть с авторизацией, пе�
    python3 manage.py runserver
 
 
-### Примеры запросов к API:
+### Работа с запросами к API:
 
-Получить список всех постов (GET):
+Документация доступна по адресу:
 ```
-http://127.0.0.1:8000/api/v1/posts/
+http://127.0.0.1:8000/redoc/
 ```
-
-Получить определенный пост (GET):
-```
-http://127.0.0.1:8000/api/v1/posts/1/
-```
-
-Получить коментарии определенного поста (GET):
-```
-http://127.0.0.1:8000/api/v1/posts/1/comments/
-```
-
-Получить список всех групп (GET):
-```
-http://127.0.0.1:8000/api/v1/groups/
+Примеры запросов:
+```r
+GET api/v1/posts/ - получить список всех публикаций.
+GET api/v1/posts/{id}/ - получение публикации по id
+GET api/v1/groups/ - получение списка доступных сообществ
+GET api/v1/groups/{id}/ - получение информации о сообществе по id
+GET api/v1/{post_id}/comments/ - получение всех комментариев к публикации
+GET api/v1/{post_id}/comments/{id}/ - Получение комментария к публикации по id
+GET /api/v1/follow/
 ```
 
-Создать новый пост (POST):
+- Авторизованные пользователи могут создавать посты, комментировать их и подписываться на других пользователей.
+- Пользователи могут изменять(удалять) контент, автором которого они являются.
+- После авторизации, переходим в раздел Groups и создаем группы.
+- Доступ авторизованным пользователем доступен по JWT-токену (Joser), который можно получить выполнив POST запрос по адресу:
 
-(Требуется аутентификация)
+```r
+POST /api/v1/jwt/create/
 ```
-http://127.0.0.1:8000/api/v1/posts/
+
+- Передав в body данные пользователя (например в postman):
+
+```json
+{
+"username": "string",
+"password": "string"
+}
+```
+
+- Полученный токен добавляем в headers (postman), после чего буду доступны все функции проекта:
+
+```r
+Authorization: Bearer {your_token}
+```
+
+- Обновить JWT-токен:
+
+```r
+POST /api/v1/jwt/refresh/
+```
+
+- Проверить JWT-токен:
+
+```r
+POST /api/v1/jwt/verify/
 ```
 
 ### Автор
